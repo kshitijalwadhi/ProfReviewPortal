@@ -22,9 +22,11 @@ class Course(models.Model):
 
 
 class Review(models.Model):
-    code = models.OneToOneField(
-        Course, on_delete=models.CASCADE, null=True)
-    prof = models.OneToOneField(Prof, on_delete=models.CASCADE, null=True)
+    # code = models.OneToOneField(
+    #     Course, on_delete=models.CASCADE, null=True)
+    # prof = models.OneToOneField(Prof, on_delete=models.CASCADE, null=True)
+    code = models.ForeignKey(Course, on_delete=models.CASCADE, null=True)
+    prof = models.ForeignKey(Prof, on_delete=models.CASCADE, null=True)
     comment = models.TextField()
     difficulty = models.IntegerField(
         default=1,
