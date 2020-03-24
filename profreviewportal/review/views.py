@@ -4,7 +4,32 @@ from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from . import forms
 
+from dal import autocomplete
+
 # Create your views here.
+
+
+# @login_required(login_url="/accounts/login")
+class CodeAutoComplete(autocomplete.Select2QuerySetView):
+    def get_queryset(self):
+        # Don't forget to filter out results depending on the visitor !
+        qs = Course.objects.all()
+
+        if self.q:
+            qs = qs.filter(courseName__istartswith=self.q)
+
+        return qs
+
+
+class ProfAutoComplete(autocomplete.Select2QuerySetView):
+    def get_queryset(self):
+        # Don't forget to filter out results depending on the visitor !
+        qs = Prof.objects.all()
+
+        if self.q:
+            qs = qs.filter(profname__istartswith=self.q)
+
+        return qs
 
 
 @login_required(login_url="/accounts/login")

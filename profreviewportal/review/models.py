@@ -8,10 +8,10 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 
 
 class Prof(models.Model):
-    name = models.CharField(max_length=100)
+    profname = models.CharField(max_length=100)
 
     def __str__(self):
-        return self.name
+        return self.profname
 
 
 class Course(models.Model):

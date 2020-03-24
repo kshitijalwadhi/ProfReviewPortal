@@ -2,6 +2,8 @@ from django.contrib import admin
 from django.conf.urls import url, include
 from django.urls import path
 from . import views
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -11,3 +13,5 @@ urlpatterns = [
     url(r'^profs/', include('profs.urls')),
     url(r'^$', views.homepage)
 ]
+
+urlpatterns += staticfiles_urlpatterns()
