@@ -22,8 +22,9 @@ class Course(models.Model):
 
 
 class Review(models.Model):
-    code = models.ManyToManyField(Course)
-    prof = models.ManyToManyField(Prof)
+    code = models.OneToOneField(
+        Course, on_delete=models.CASCADE, null=True)
+    prof = models.OneToOneField(Prof, on_delete=models.CASCADE, null=True)
     comment = models.TextField()
     difficulty = models.IntegerField(
         default=1,
@@ -33,6 +34,7 @@ class Review(models.Model):
         default=1,
         validators=[MaxValueValidator(10), MinValueValidator(1)]
     )
+    author = models.ForeignKey(User, on_delete=models.CASCADE, default=None)
 
     # def __str__(self):
     #     return self.code

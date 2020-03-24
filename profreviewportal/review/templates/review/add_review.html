@@ -1,0 +1,15 @@
+{% extends 'base_layout.html' %}
+
+{% block content %}
+
+<div class="add_review">
+    <h2> Add a review </h2>
+    <form class="site-form" action="{% url 'review:create' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{form}}
+        <input type="submit" value="Create">
+    </form>
+</div>
+
+
+{% endblock %}
