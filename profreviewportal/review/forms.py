@@ -13,4 +13,4 @@ class AddReview(forms.ModelForm):
 
         }
         fields = ['code', 'prof', 'comment',
-                  'difficulty', 'contentquality', 'author']
+                  'difficulty', 'contentquality', 'anonymous']

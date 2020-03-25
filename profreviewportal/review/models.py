@@ -22,9 +22,6 @@ class Course(models.Model):
 
 
 class Review(models.Model):
-    # code = models.OneToOneField(
-    #     Course, on_delete=models.CASCADE, null=True)
-    # prof = models.OneToOneField(Prof, on_delete=models.CASCADE, null=True)
     code = models.ForeignKey(Course, on_delete=models.CASCADE, null=True)
     prof = models.ForeignKey(Prof, on_delete=models.CASCADE, null=True)
     comment = models.TextField()
@@ -36,7 +33,9 @@ class Review(models.Model):
         default=1,
         validators=[MaxValueValidator(10), MinValueValidator(1)]
     )
+    BOOL_CHOICES = ((False, 'No'), (True, 'Yes'))
+    anonymous = models.BooleanField(choices=BOOL_CHOICES, default=False)
     author = models.ForeignKey(User, on_delete=models.CASCADE, default=None)
-
+    date = models.DateTimeField(auto_now=True)
     # def __str__(self):
     #     return self.code

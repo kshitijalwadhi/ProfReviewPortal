@@ -9,10 +9,9 @@ from dal import autocomplete
 # Create your views here.
 
 
-# @login_required(login_url="/accounts/login")
 class CodeAutoComplete(autocomplete.Select2QuerySetView):
     def get_queryset(self):
-        # Don't forget to filter out results depending on the visitor !
+
         qs = Course.objects.all()
 
         if self.q:
@@ -23,7 +22,7 @@ class CodeAutoComplete(autocomplete.Select2QuerySetView):
 
 class ProfAutoComplete(autocomplete.Select2QuerySetView):
     def get_queryset(self):
-        # Don't forget to filter out results depending on the visitor !
+
         qs = Prof.objects.all()
 
         if self.q:
