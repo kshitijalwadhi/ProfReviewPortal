@@ -2,7 +2,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login, logout
 from django.http import HttpResponse
-
+from review.models import Course, Review, Prof
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 
@@ -42,3 +43,9 @@ def logout_view(request):
         logout(request)
         return HttpResponse('Logged out')
         # return redirect('homepage.html')
+
+
+@login_required(login_url="/accounts/login")
+def profile_view(request):
+    reviews = Review.objects.all().order_by('-date')
+    return render(request, 'accounts/profile.html', {'reviews': reviews})
