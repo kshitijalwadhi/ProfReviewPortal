@@ -27,6 +27,9 @@
                         <button type="submit">Logout</button>
                     </form>
                 </li>
+                {% if user.is_superuser %}
+                <li><a class="highlight">(Logged in as Admin)</a> </li>
+                {% endif %}
                 {% else %}
                 <li><a href="{% url 'accounts:login' %}" class="highlight">Login</a></li>
                 <li><a href="{% url 'accounts:signup' %}" class="highlight">Signup</a></li>
