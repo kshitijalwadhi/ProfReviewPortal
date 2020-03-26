@@ -4,9 +4,9 @@
 
 <h1>Hi there!</h1>
 <h2>Welcome to your profile page</h2>
-<br>
+<hr>
 <h2>This area contains the reviews entered by you: </h2>
-
+<hr>
 <div class="reviews">
     {% for review in reviews  %}
     {% if review.author == request.user %}
@@ -17,14 +17,14 @@
         <p>Difficulty: {{review.difficulty}}/10</p>
         <p>Content quality: {{review.contentquality}}/10</p>
         <p>Added on: {{review.date}} </p>
-        <p>Posted as:
+        <p class="author">Posted as:
             {% if review.anonymous %}
             Anonymous
             {% else %}
             {{review.author.username}}
             {% endif %}
         </p>
-        <hr>
+        
     </div>
     {% endif %}
     {% endfor  %}

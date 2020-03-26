@@ -14,9 +14,9 @@
         <p>Content quality: {{review.contentquality}}/10</p>
         <p>Added on: {{review.date}} </p>
         {% if review.anonymous %}
-        <p> Anonymous </p>
+        <p class="author"> Anonymous </p>
         {% else %}
-        <p> Added by {{review.author.username }}</p>
+        <p class="author"> Added by {{review.author.username }}</p>
         {% endif %}
         <hr>
     </div>

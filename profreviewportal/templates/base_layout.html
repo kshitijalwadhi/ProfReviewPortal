@@ -16,15 +16,18 @@
         <nav>
             <ul>
                 {% if user.is_authenticated %}
+                <li><a href="{% url 'review:search' %}" class="highlight">Reviews</a></li>
+                <li><a href="{% url 'review:create' %}" class="highlight">Add new Review</a></li>
+                <li><a href="{% url 'accounts:profile' %}" class="highlight">Profile</a></li>
                 <li>
-                    <form class="logout-link" action="{% url 'accounts:logout' %}" method="post">
+                    <form class="highlight" action="{% url 'accounts:logout' %}" method="post">
                         {% csrf_token %}
                         <button type="submit">Logout</button>
                     </form>
                 </li>
                 {% else %}
-                <li><a href="{% url 'accounts:login' %}">Login</a></li>
-                <li><a href="{% url 'accounts:signup' %}">Signup</a></li>
+                <li><a href="{% url 'accounts:login' %}" class="highlight">Login</a></li>
+                <li><a href="{% url 'accounts:signup' %}" class="highlight">Signup</a></li>
                 {% endif %}
             </ul>
         </nav>
