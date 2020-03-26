@@ -42,8 +42,8 @@ def add_review(request):
             instance = form.save(commit=False)
             instance.author = request.user
             instance.save()
-            # return redirect('articles:list')
-            return HttpResponse('added')
+            return redirect('review:search')
+            # return HttpResponse('added')
     else:
         form = forms.AddReview()
     return render(request, 'review/add_review.html', {'form': form})

@@ -14,8 +14,8 @@ def signup_view(request):
             user = form.save()
             # log the user in
             login(request, user)
-            return HttpResponse('Signed up')
-            # return redirect('homepage.html')  # see this redirect later
+            # return HttpResponse('Signed up')
+            return redirect('review:search')  # see this redirect later
     else:
         form = UserCreationForm()
     return render(request, 'accounts/signup.html', {'form': form})
@@ -31,8 +31,8 @@ def login_view(request):
             if 'next' in request.POST:
                 return redirect(request.POST.get('next'))
             else:
-                return HttpResponse('Logged in')
-                # return redirect('homepage.html')
+                # return HttpResponse('Logged in')
+                return redirect('review:search')
     else:
         form = AuthenticationForm()
     return render(request, 'accounts/login.html', {'form': form})
@@ -41,8 +41,8 @@ def login_view(request):
 def logout_view(request):
     if request.method == 'POST':
         logout(request)
-        return HttpResponse('Logged out')
-        # return redirect('homepage.html')
+        # return HttpResponse('Logged out')
+        return redirect('accounts:login')
 
 
 @login_required(login_url="/accounts/login")
