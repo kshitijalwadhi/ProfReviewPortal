@@ -45,3 +45,8 @@ def add_review(request):
     else:
         form = forms.AddReview()
     return render(request, 'review/add_review.html', {'form': form})
+
+
+def review_list(request):
+    reviews = Review.objects.all().order_by('date')
+    return render(request, 'review/course_list.html', {'reviews': reviews})

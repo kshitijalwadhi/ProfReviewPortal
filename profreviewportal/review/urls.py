@@ -10,4 +10,5 @@ urlpatterns = [
     url('^add_review/$', views.add_review, name="create"),
     url('^code-autocomplete/$', CodeAutoComplete.as_view(), name='code-autocomplete'),
     url('^prof-autocomplete/$', ProfAutoComplete.as_view(), name='prof-autocomplete'),
+    url('^course/', views.review_list, name="course")
 ]

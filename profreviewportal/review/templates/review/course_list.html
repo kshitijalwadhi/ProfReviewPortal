@@ -1,0 +1,26 @@
+{% extends 'base_layout.html' %}
+
+{% block content %}
+<h1>Course List</h1>
+<hr>
+<div class="reviews">
+    {% for review in reviews  %}
+    <div class="review">
+        {% comment %} <a href="{% url 'articles:detail' slug=article.slug %}"> </a> {% endcomment %}
+        <h2>Course Code: {{review.code}} </h2>
+        <h3>Prof Name: {{review.prof}}</h3>
+        <p>Comments: {{review.comment}} </p>
+        <p>Difficulty: {{review.difficulty}}/10</p>
+        <p>Content quality: {{review.contentquality}}/10</p>
+        <p>Added on: {{review.date}} </p>
+        {% if review.anonymous %}
+        <p> Anonymous </p>
+        {% else %}
+        <p> Added by {{review.author.username }}</p>
+        {% endif %}
+        <hr>
+    </div>
+    {% endfor  %}
+</div>
+
+{% endblock %}
