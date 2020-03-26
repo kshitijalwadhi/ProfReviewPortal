@@ -48,5 +48,5 @@ def add_review(request):
 
 
 def review_list(request):
-    reviews = Review.objects.all().order_by('date')
+    reviews = Review.objects.all().order_by('-date')
     return render(request, 'review/course_list.html', {'reviews': reviews})
