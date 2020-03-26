@@ -1,0 +1,30 @@
+{% extends 'base_layout.html' %}
+
+{% block content %}
+
+<form method="get">
+    {{ filter.form.as_p }}
+    <button type="submit">Search</button>
+</form>
+
+{% for obj in filter.qs %}
+<!-- {{ obj.code }} - {{ obj.prof }} - {{ obj.comment }}<br /> -->
+
+<div class="review">
+    <h2>Course Code: {{obj.code}} </h2>
+    <h3>Prof Name: {{obj.prof}}</h3>
+    <p>Comments: {{obj.comment}} </p>
+    <p>Difficulty: {{obj.difficulty}}/10</p>
+    <p>Content quality: {{obj.contentquality}}/10</p>
+    <p>Added on: {{obj.date}} </p>
+    {% if obj.anonymous %}
+    <p> Anonymous </p>
+    {% else %}
+    <p> Added by {{obj.author.username }}</p>
+    {% endif %}
+    <hr>
+</div>
+
+{% endfor %}
+
+{% endblock %}

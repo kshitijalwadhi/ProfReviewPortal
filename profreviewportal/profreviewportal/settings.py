@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'profs',
     'courses',
     'review',
+    'django_filters',
     # 'simple_autocomplete'
 ]
 

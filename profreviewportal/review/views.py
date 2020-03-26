@@ -6,6 +6,8 @@ from . import forms
 
 from dal import autocomplete
 
+from .filters import ReviewFilter
+
 # Create your views here.
 
 
@@ -50,3 +52,8 @@ def add_review(request):
 def review_list(request):
     reviews = Review.objects.all().order_by('-date')
     return render(request, 'review/course_list.html', {'reviews': reviews})
+
+
+def search(request):
+    review_filter = ReviewFilter(request.GET, queryset=Review.objects.all())
+    return render(request, 'review/search.html', {'filter': review_filter})
