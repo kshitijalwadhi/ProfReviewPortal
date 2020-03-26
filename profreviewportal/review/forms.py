@@ -14,3 +14,15 @@ class AddReview(forms.ModelForm):
         }
         fields = ['code', 'prof', 'comment',
                   'difficulty', 'contentquality', 'anonymous']
+
+
+class AddCourse(forms.ModelForm):
+    class Meta:
+        model = models.Course
+        fields = ['courseName']
+
+
+class AddProf(forms.ModelForm):
+    class Meta:
+        model = models.Prof
+        fields = ['profname']

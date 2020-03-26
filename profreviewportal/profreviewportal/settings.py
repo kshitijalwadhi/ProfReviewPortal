@@ -40,8 +40,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'accounts',
-    'profs',
-    'courses',
     'review',
     'django_filters',
     # 'simple_autocomplete'

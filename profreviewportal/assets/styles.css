@@ -123,6 +123,12 @@ nav {
     margin: 10px 0;
 }
 
+.site-form input[type="submit"]:hover {
+    background: teal;
+    cursor: pointer;
+}
+
+
 body {
     background-color: aliceblue;
     /* b2edf2 */

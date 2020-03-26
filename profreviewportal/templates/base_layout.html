@@ -18,6 +18,8 @@
                 {% if user.is_authenticated %}
                 <li><a href="{% url 'review:search' %}" class="highlight">Reviews</a></li>
                 <li><a href="{% url 'review:create' %}" class="highlight">Add new Review</a></li>
+                <li><a href="{% url 'review:createcourse' %}" class="highlight">Add new Course</a></li>
+                <li><a href="{% url 'review:createprof' %}" class="highlight">Add new Prof</a></li>
                 <li><a href="{% url 'accounts:profile' %}" class="highlight">Profile</a></li>
                 <li>
                     <form class="highlight" action="{% url 'accounts:logout' %}" method="post">

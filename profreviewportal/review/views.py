@@ -57,3 +57,27 @@ def review_list(request):
 def search(request):
     review_filter = ReviewFilter(request.GET, queryset=Review.objects.all())
     return render(request, 'review/search.html', {'filter': review_filter})
+
+
+def add_prof(request):
+    if request.method == 'POST':
+        form = forms.AddProf(request.POST, request.FILES)
+        if form.is_valid():
+            # save article to db
+            form.save()
+            return redirect('review:search')
+    else:
+        form = forms.AddProf()
+    return render(request, 'review/add_prof.html', {'form': form})
+
+
+def add_course(request):
+    if request.method == 'POST':
+        form = forms.AddCourse(request.POST, request.FILES)
+        if form.is_valid():
+            # save article to db
+            form.save()
+            return redirect('review:search')
+    else:
+        form = forms.AddCourse()
+    return render(request, 'review/add_course.html', {'form': form})

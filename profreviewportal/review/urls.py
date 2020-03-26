@@ -12,4 +12,6 @@ urlpatterns = [
     url('^prof-autocomplete/$', ProfAutoComplete.as_view(), name='prof-autocomplete'),
     url('^course/', views.review_list, name="course"),
     url(r'^search/$', views.search, name='search'),
+    url('^add_prof/$', views.add_prof, name="createprof"),
+    url('^add_course/$', views.add_course, name="createcourse"),
 ]
