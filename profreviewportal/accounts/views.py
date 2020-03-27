@@ -35,6 +35,10 @@ def login_view(request):
         if form.is_valid():
             # log in the user
             user = form.get_user()
+            blocks = Block.objects.all()
+            for block in blocks:
+                if block.user == user and block.block == True:
+                    return render(request, 'accounts/blocked.html')
             login(request, user)
             if 'next' in request.POST:
                 return redirect(request.POST.get('next'))
