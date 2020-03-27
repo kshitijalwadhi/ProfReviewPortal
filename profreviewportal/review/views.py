@@ -63,6 +63,12 @@ def add_prof(request):
     if request.method == 'POST':
         form = forms.AddProf(request.POST, request.FILES)
         if form.is_valid():
+            data = form.cleaned_data
+            profcheck = data['profname']
+            profs = Prof.objects.all()
+            for prof in profs:
+                if prof.profname == profcheck:
+                    return render(request, 'review/already_there.html')
             # save article to db
             form.save()
             return redirect('review:search')
@@ -75,6 +81,12 @@ def add_course(request):
     if request.method == 'POST':
         form = forms.AddCourse(request.POST, request.FILES)
         if form.is_valid():
+            data = form.cleaned_data
+            coursecheck = data['courseName']
+            courses = Course.objects.all()
+            for course in courses:
+                if course.courseName == coursecheck:
+                    return render(request, 'review/already_there.html')
             # save article to db
             form.save()
             return redirect('review:search')
