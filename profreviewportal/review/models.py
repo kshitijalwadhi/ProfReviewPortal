@@ -39,3 +39,9 @@ class Review(models.Model):
     date = models.DateTimeField(auto_now=True)
     # def __str__(self):
     #     return self.code
+
+
+class Warning(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default=None)
+    message = models.TextField()
+    date = models.DateTimeField(auto_now=True)

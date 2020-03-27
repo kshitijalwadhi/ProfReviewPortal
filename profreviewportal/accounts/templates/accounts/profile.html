@@ -5,6 +5,20 @@
 <h1>Hi there!</h1>
 <h2>Welcome to your profile page</h2>
 <hr>
+<h2>Following are the warnings you have received from the admin: </h2>
+<hr>
+<div class="warnings">
+    {% for warning in warnings  %}
+    {% if warning.user == request.user %}
+    <div class="warning">
+        <p style="font-weight: bold;">Message: </p>
+        <p>{{warning.message}}</p>
+        <p>sent on: {{ warning.date }}</p>
+    </div>
+    {% endif %}
+    {% endfor  %}
+</div>
+<hr>
 <h2>This area contains the reviews entered by you: </h2>
 <hr>
 <div class="reviews">
@@ -24,7 +38,7 @@
             {{review.author.username}}
             {% endif %}
         </p>
-        
+
     </div>
     {% endif %}
     {% endfor  %}
