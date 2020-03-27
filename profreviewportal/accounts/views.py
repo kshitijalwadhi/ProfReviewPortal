@@ -4,21 +4,29 @@ from django.contrib.auth import login, logout
 from django.http import HttpResponse
 from review.models import Course, Review, Prof, Warning
 from django.contrib.auth.decorators import login_required
+from .forms import AddBlockField
+from .models import Block
 # Create your views here.
 
 
 def signup_view(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
+        block_form = AddBlockField(request.POST)
         if form.is_valid():
             user = form.save()
+            blockobj = block_form.save(commit=False)
+            blockobj.user = user
+            blockobj.block = False
+            blockobj.save()
             # log the user in
             login(request, user)
             # return HttpResponse('Signed up')
             return redirect('review:search')  # see this redirect later
     else:
         form = UserCreationForm()
-    return render(request, 'accounts/signup.html', {'form': form})
+        block_form = AddBlockField()
+    return render(request, 'accounts/signup.html', {'form': form, 'block_form': block_form})
 
 
 def login_view(request):

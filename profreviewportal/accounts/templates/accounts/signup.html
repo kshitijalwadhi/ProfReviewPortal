@@ -6,6 +6,7 @@
 <form class="site-form" action="/accounts/signup/" method="post">
     {% csrf_token %}
     {{ form }}
+    {{ block_form }}
     <input type="submit" value="Signup">
 </form>
 
