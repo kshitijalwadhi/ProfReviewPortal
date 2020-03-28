@@ -59,6 +59,9 @@ The main model of this app contains the class Review which has the following par
 * Option to ban a user for a particular number of days instead of permanently.
 
 ## Instructions for firing the server up:
+First install the dependencies, by cloning the repo and going into the directory containing, then open a terminal there and execute:
+
+pip3 install -r requirements.txt
 
 Open the terminal and from the root directory of this repo(the one containing manage(dot)py), execute the following command: 
 
