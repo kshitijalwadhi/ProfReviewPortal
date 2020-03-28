@@ -8,10 +8,9 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^accounts/', include('accounts.urls')),
-    url(r'^courses/', include('courses.urls')),
     url(r'^review/', include('review.urls')),
-    url(r'^profs/', include('profs.urls')),
-    url(r'^$', views.homepage)
+    url(r'^$', views.homepage),
+    url(r'^accounts/', include('registration.backends.default.urls')),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

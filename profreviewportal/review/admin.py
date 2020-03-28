@@ -20,6 +20,9 @@ class ReviewAdmin(admin.ModelAdmin):
     search_fields = ('code', 'prof')
 
 
+# Reference for the below : https://medium.com/datadriveninvestor/monitoring-user-actions-with-logentry-in-django-admin-8c9fbaa3f442
+
+
 @admin.register(LogEntry)
 class LogEntryAdmin(admin.ModelAdmin):
     # to have a date-based drilldown navigation in the admin page
