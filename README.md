@@ -53,6 +53,7 @@ The main model of this app contains the class Review which has the following par
 * Also revamped the Reviews page in Admin Portal to allow for easy viewing.
 * Report button for reviews.
 * Like/Dislike feature for author of a review to allow a reader to judge the authors credibility.
+* Also shows likes received by every review
 
 ## Upcoming Features:
 * ~~Report button for reviews~~ (Added)

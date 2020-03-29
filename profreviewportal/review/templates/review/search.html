@@ -16,6 +16,9 @@
         <p>Difficulty: {{obj.difficulty}}/10</p>
         <p>Content quality: {{obj.contentquality}}/10</p>
         <p>Added on: {{obj.date}} </p>
+        <p style="color:midnightblue;">
+            Total likes on this review: {{obj.likes.count}}
+        </p>
         {% if obj.anonymous %}
         <p class="author"> Anonymous </p>
         {% else %}

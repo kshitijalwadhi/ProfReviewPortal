@@ -58,7 +58,8 @@ def review_list(request):
 def search(request):
     review_filter = ReviewFilter(request.GET, queryset=Review.objects.all())
     ratings = LikesCount.objects.all()
-    return render(request, 'review/search.html', {'filter': review_filter, 'ratings': ratings})
+    sum = 0
+    return render(request, 'review/search.html', {'filter': review_filter, 'ratings': ratings, 'sum': 0})
 
 
 def add_prof(request):
