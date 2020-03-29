@@ -39,8 +39,8 @@ class Review(models.Model):
     date = models.DateTimeField(auto_now=True)
     report = models.BooleanField(
         choices=BOOL_CHOICES, default=False, null=True)
-    # def __str__(self):
-    #     return self.code
+
+    likes = models.ManyToManyField(User, related_name="likes", blank=True)
 
 
 class Warning(models.Model):

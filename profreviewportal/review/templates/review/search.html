@@ -9,7 +9,6 @@
 <div class="reviews">
     {% for obj in filter.qs %}
     <!-- {{ obj.code }} - {{ obj.prof }} - {{ obj.comment }}<br /> -->
-
     <div class="review">
         <h2>Course Code: {{obj.code}} </h2>
         <h3>Prof Name: {{obj.prof}}</h3>
@@ -22,6 +21,15 @@
         {% else %}
         <p> Added by {{obj.author.username }}</p>
         {% endif %}
+        <form action="{% url 'review:like_post' %}" method="POST">
+            {% csrf_token %}
+
+            {% if request.user in obj.likes.all %}
+            <button type="submit" name="post_id" value="{{ obj.id }}"> Dislike </button>
+            {% else %}
+            <button type="submit" name="post_id" value="{{ obj.id }}"> Like </button>
+            {% endif %}
+        </form>
         <form action="{% url 'review:post_report' %}" method="POST">
             {% csrf_token %}
 

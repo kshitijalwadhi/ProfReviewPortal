@@ -4,9 +4,9 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from . import forms
 from django.shortcuts import get_list_or_404, get_object_or_404
-
+from accounts.models import LikesCount
 from dal import autocomplete
-
+from django.contrib.auth.models import User
 from .filters import ReviewFilter
 
 # Create your views here.
@@ -57,7 +57,12 @@ def review_list(request):
 
 def search(request):
     review_filter = ReviewFilter(request.GET, queryset=Review.objects.all())
-    return render(request, 'review/search.html', {'filter': review_filter})
+    useridd = request.user.id
+    is_liked = False
+    for obj in review_filter.qs:
+        if obj.likes.filter(id=request.user.id).exists():
+            is_liked = True
+    return render(request, 'review/search.html', {'filter': review_filter, 'is_liked': is_liked, 'useridd': useridd})
 
 
 def add_prof(request):
@@ -104,5 +109,20 @@ def add_report(request):
     return render(request, 'review/reported.html')
 
 
-def add_likes(request):
-    return 0
+def like_post(request):
+    post = Review.objects.get(id=request.POST['post_id'])
+    is_liked = False
+    if post.likes.filter(id=request.user.id).exists():
+        post.likes.remove(request.user)
+        is_liked = False
+        tempuser = post.author
+        likeduser = LikesCount.objects.get(user=tempuser)
+        likeduser.userlikes = likeduser.userlikes-1
+        likeduser.save()
+    else:
+        post.likes.add(request.user)
+        tempuser = post.author
+        likeduser = LikesCount.objects.get(user=tempuser)
+        likeduser.userlikes = likeduser.userlikes+1
+        likeduser.save()
+    return HttpResponse(likeduser.userlikes)

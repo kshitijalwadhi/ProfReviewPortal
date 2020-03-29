@@ -16,3 +16,11 @@ class Block(models.Model):
 
     def __str__(self):
         return self.user.username
+
+
+class LikesCount(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, default=None)
+    userlikes = models.IntegerField(default=0)
+
+    def __str__(self):
+        return self.user.username
