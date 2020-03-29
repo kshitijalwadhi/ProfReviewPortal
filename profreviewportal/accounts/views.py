@@ -5,7 +5,7 @@ from django.http import HttpResponse
 from review.models import Course, Review, Prof, Warning
 from django.contrib.auth.decorators import login_required
 from .forms import AddBlockField, AddLikeField
-from .models import Block
+from .models import Block, LikesCount
 # Create your views here.
 
 
@@ -64,6 +64,7 @@ def logout_view(request):
 
 @login_required(login_url="/accounts/login")
 def profile_view(request):
+    ratings = LikesCount.objects.all()
     reviews = Review.objects.all().order_by('-date')
     warnings = Warning.objects.all().order_by('-date')
-    return render(request, 'accounts/profile.html', {'reviews': reviews, 'warnings': warnings})
+    return render(request, 'accounts/profile.html', {'reviews': reviews, 'warnings': warnings, 'ratings': ratings})

@@ -2,8 +2,15 @@
 
 {% block content %}
 
-<h1>Hi there!</h1>
+<h1>Hi there {{request.user}} ! </h1>
 <h2>Welcome to your profile page</h2>
+<h2 style="color:firebrick;">Your ratings as of now are:
+    {% for obj in ratings %}
+    {% if obj.user == request.user %}
+    {{ obj.userlikes }}
+    {% endif %}
+    {% endfor %}
+</h2>
 <hr>
 <h2>Following are the warnings you have received from the admin: </h2>
 <hr>
