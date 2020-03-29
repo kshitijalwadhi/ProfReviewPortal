@@ -17,10 +17,10 @@
         <p>Content quality: {{obj.contentquality}}/10</p>
         <p>Added on: {{obj.date}} </p>
         {% if obj.anonymous %}
-        <p> Anonymous </p>
+        <p class="author"> Anonymous </p>
         {% else %}
-        <p> Added by {{obj.author.username }}</p>
-        <p> Ratings:
+        <p class="author"> {{obj.author.username }}</p>
+        <p class="rating">Author Ratings:
             {% for obj2 in ratings %}
             {% if obj2.user == obj.author %}
             {{ obj2.userlikes }}
@@ -29,13 +29,13 @@
         </p>
         {% endif %}
         {% if not obj.anonymous %}
-        <form action="{% url 'review:like_post' %}" method="POST">
+        <form action="{% url 'review:like_post' %}" method="POST" class="likeform">
             {% csrf_token %}
 
             {% if request.user in obj.likes.all and not request.user in obj.dislikes.all %}
-            <button type="submit" name="post_id" value="{{ obj.id }}"> Remove Like </button>
+            <button type="submit" name="post_id" value="{{ obj.id }}" class="likebtn"> Remove Like </button>
             {% elif not request.user in obj.likes.all and not request.user in obj.dislike.all %}
-            <button type="submit" name="post_id" value="{{ obj.id }}"> Like </button>
+            <button type="submit" name="post_id" value="{{ obj.id }}" class="likebtn"> Like </button>
             {% else %}
             {% endif %}
         </form>
