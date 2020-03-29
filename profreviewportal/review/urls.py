@@ -16,4 +16,5 @@ urlpatterns = [
     url('^add_course/$', views.add_course, name="createcourse"),
     url('report/$', views.add_report, name="post_report"),
     url('like/$', views.like_post, name="like_post"),
+    #url('dislike/$', views.dis_post, name="dis_post"),
 ]

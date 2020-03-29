@@ -41,6 +41,8 @@ class Review(models.Model):
         choices=BOOL_CHOICES, default=False, null=True)
 
     likes = models.ManyToManyField(User, related_name="likes", blank=True)
+    dislikes = models.ManyToManyField(
+        User, related_name="dislikes", blank=True)
 
 
 class Warning(models.Model):

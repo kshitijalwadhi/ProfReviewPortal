@@ -8,7 +8,7 @@ from accounts.models import LikesCount
 from dal import autocomplete
 from django.contrib.auth.models import User
 from .filters import ReviewFilter
-
+from django.http import HttpResponseRedirect
 # Create your views here.
 
 
@@ -57,12 +57,8 @@ def review_list(request):
 
 def search(request):
     review_filter = ReviewFilter(request.GET, queryset=Review.objects.all())
-    useridd = request.user.id
-    is_liked = False
-    for obj in review_filter.qs:
-        if obj.likes.filter(id=request.user.id).exists():
-            is_liked = True
-    return render(request, 'review/search.html', {'filter': review_filter, 'is_liked': is_liked, 'useridd': useridd})
+    ratings = LikesCount.objects.all()
+    return render(request, 'review/search.html', {'filter': review_filter, 'ratings': ratings})
 
 
 def add_prof(request):
@@ -110,11 +106,9 @@ def add_report(request):
 
 
 def like_post(request):
-    post = Review.objects.get(id=request.POST['post_id'])
-    is_liked = False
+    post = Review.objects.get(id=request.POST.get('post_id'))
     if post.likes.filter(id=request.user.id).exists():
         post.likes.remove(request.user)
-        is_liked = False
         tempuser = post.author
         likeduser = LikesCount.objects.get(user=tempuser)
         likeduser.userlikes = likeduser.userlikes-1
@@ -125,4 +119,34 @@ def like_post(request):
         likeduser = LikesCount.objects.get(user=tempuser)
         likeduser.userlikes = likeduser.userlikes+1
         likeduser.save()
-    return HttpResponse(likeduser.userlikes)
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+
+# def dis_post(request):
+#     post2 = Review.objects.get(id=request.POST.get('post_id2'))
+#     if post2.dislikes.filter(id=request.user.id).exists():
+#         post2.dislikes.remove(request.user)
+#         tempuser = post2.author
+#         dislikeduser = LikesCount.objects.get(user=tempuser)
+#         dislikeduser.userlikes = dislikeduser.userlikes+1
+#         dislikeduser.save()
+#     else:
+#         post2.dislikes.add(request.user)
+#         tempuser = post2.author
+#         dislikeduser = LikesCount.objects.get(user=tempuser)
+#         dislikeduser.userlikes = dislikeduser.userlikes-1
+#         dislikeduser.save()
+#     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+
+# HTML FORM FOR DISLIKE:
+    # <!-- <form action="{% url 'review:dis_post' %}" method="POST">
+    #     {% csrf_token %}
+
+    #     {% if request.user in obj.dislikes.all and not request.user in obj.likes.all %}
+    #     <button type="submit" name="post_id2" value="{{ obj.id }}"> Remove Dislike </button>
+    #     {% elif not request.user in obj.dislikes.all and not request.user in obj.like.all  %}
+    #     <button type="submit" name="post_id2" value="{{ obj.id }}"> Dislike </button>
+    #     {% else %}
+    #     {% endif %}
+    # </form> -->

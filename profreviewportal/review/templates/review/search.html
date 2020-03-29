@@ -20,16 +20,26 @@
         <p> Anonymous </p>
         {% else %}
         <p> Added by {{obj.author.username }}</p>
+        <p> Ratings:
+            {% for obj2 in ratings %}
+            {% if obj2.user == obj.author %}
+            {{ obj2.userlikes }}
+            {% endif %}
+            {% endfor %}
+        </p>
         {% endif %}
+        {% if not obj.anonymous %}
         <form action="{% url 'review:like_post' %}" method="POST">
             {% csrf_token %}
 
-            {% if request.user in obj.likes.all %}
-            <button type="submit" name="post_id" value="{{ obj.id }}"> Dislike </button>
-            {% else %}
+            {% if request.user in obj.likes.all and not request.user in obj.dislikes.all %}
+            <button type="submit" name="post_id" value="{{ obj.id }}"> Remove Like </button>
+            {% elif not request.user in obj.likes.all and not request.user in obj.dislike.all %}
             <button type="submit" name="post_id" value="{{ obj.id }}"> Like </button>
+            {% else %}
             {% endif %}
         </form>
+        {% endif %}
         <form action="{% url 'review:post_report' %}" method="POST">
             {% csrf_token %}
 

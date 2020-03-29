@@ -4,7 +4,7 @@ from django.contrib.auth import login, logout
 from django.http import HttpResponse
 from review.models import Course, Review, Prof, Warning
 from django.contrib.auth.decorators import login_required
-from .forms import AddBlockField
+from .forms import AddBlockField, AddLikeField
 from .models import Block
 # Create your views here.
 
@@ -13,12 +13,17 @@ def signup_view(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
         block_form = AddBlockField(request.POST)
+        like_form = AddLikeField(request.POST)
         if form.is_valid():
             user = form.save()
             blockobj = block_form.save(commit=False)
+            likeobj = like_form.save(commit=False)
             blockobj.user = user
             blockobj.block = False
             blockobj.save()
+            likeobj.user = user
+            likeobj.userlikes = 0
+            likeobj.save()
             # log the user in
             login(request, user)
             # return HttpResponse('Signed up')
