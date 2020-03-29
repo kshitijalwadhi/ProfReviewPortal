@@ -22,6 +22,11 @@
         {% else %}
         <p> Added by {{obj.author.username }}</p>
         {% endif %}
+        <form action="{% url 'review:post_report' %}" method="POST">
+            {% csrf_token %}
+
+            <button type="submit" name="post_report" value="{{ obj.id }}"> Report </button>
+        </form>
     </div>
 
     {% endfor %}

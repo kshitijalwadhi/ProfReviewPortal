@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
 from .models import Review, Prof, Course
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from . import forms
+from django.shortcuts import get_list_or_404, get_object_or_404
 
 from dal import autocomplete
 
@@ -93,3 +94,15 @@ def add_course(request):
     else:
         form = forms.AddCourse()
     return render(request, 'review/add_course.html', {'form': form})
+
+
+def add_report(request):
+    post = Review.objects.get(id=request.POST['post_report'])
+    if post.report == False:
+        post.report = True
+    post.save()
+    return render(request, 'review/reported.html')
+
+
+def add_likes(request):
+    return 0

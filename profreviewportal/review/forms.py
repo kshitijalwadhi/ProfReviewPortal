@@ -28,3 +28,9 @@ class AddProf(forms.ModelForm):
     class Meta:
         model = models.Prof
         fields = ['profname']
+
+
+class AddReport(forms.ModelForm):
+    class Meta:
+        model = models.Review
+        fields = []

@@ -54,6 +54,7 @@ The main model of this app contains the class Review which has the following par
 
 
 ## Upcoming Features:
+* ~~Report button for reviews~~ (Added)
 * Like/Dislike feature for author of a review.
 * Verification of email ID during registration.
 * Option to ban a user for a particular number of days instead of permanently.

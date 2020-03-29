@@ -15,9 +15,9 @@ admin.site.register(Warning)
 
 @admin.register(Review)
 class ReviewAdmin(admin.ModelAdmin):
-    list_display = ('code', 'prof', 'date')
+    list_display = ('code', 'prof', 'date', 'report')
     ordering = ('-date',)
-    search_fields = ('code', 'prof')
+    search_fields = ('code', 'prof', 'report')
 
 
 # Reference for the below : https://medium.com/datadriveninvestor/monitoring-user-actions-with-logentry-in-django-admin-8c9fbaa3f442
