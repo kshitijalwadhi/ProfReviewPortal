@@ -51,11 +51,12 @@ The main model of this app contains the class Review which has the following par
 * Admin can also ban any user from logging in again. (Can be toggled, user profile is not actually deleted)
 * Admin Portal also has an excellent portal to view the recent activity of the users.
 * Also revamped the Reviews page in Admin Portal to allow for easy viewing.
-
+* Report button for reviews.
+* Like/Dislike feature for author of a review to allow a reader to judge the authors credibility.
 
 ## Upcoming Features:
 * ~~Report button for reviews~~ (Added)
-* Like/Dislike feature for author of a review.
+* ~~Like/Dislike feature for author of a review.~~ (Added)
 * Verification of email ID during registration.
 * Option to ban a user for a particular number of days instead of permanently.
 
