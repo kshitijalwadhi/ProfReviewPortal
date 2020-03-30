@@ -28,12 +28,20 @@ def remove_reported(modeladmin, request, queryset):
 remove_reported.short_description = "Remove reported reviews and send warning"
 
 
+def remove_reports(modeladmin, request, queryset):
+    for obj in queryset:
+        obj.report = False
+
+
+remove_reports.short_description = "Remove reports on the selected reviews"
+
+
 @admin.register(Review)
 class ReviewAdmin(admin.ModelAdmin):
     list_display = ('code', 'prof', 'date', 'report')
     ordering = ('-date',)
     search_fields = ('code', 'prof', 'report')
-    actions = [remove_reported]
+    actions = [remove_reports, remove_reported]
 
 
 @admin.register(Warning)
