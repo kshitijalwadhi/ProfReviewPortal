@@ -11,6 +11,8 @@ The project was built using Django Framework.
 * The answers to the questions are there in the repo itself in the pdf format. 
   
   Link to that: [Answers - Dev Club](./Dev_Club_Recruitment.pdf)
+
+* I have completed the Minimum and Preferred requirements fully and also implemented 15 days ban option from bonus section. Also added a few QoL features in Admin section. 
 * Please have a look at my github page for other projects involving frontend projects as well.
 
 ## Database Model
@@ -65,12 +67,14 @@ The main model of this app contains the class Review which has the following par
 ## Instructions for firing the server up:
 First install the dependencies, by cloning the repo and going into the directory containing, then open a terminal there and execute:
 
-pip3 install -r requirements.txt
+```bash
+$ pip3 install -r requirements.txt
+```
 
 Open the terminal and from the root directory of this repo(the one containing manage(dot)py), execute the following command: 
-
-python manage.py runserver
-
+```bash
+$ python manage.py runserver
+```
 ## Default ID and passwords:
 
 * For Admin:
@@ -80,3 +84,12 @@ python manage.py runserver
   * username: useri
   * password: passi
   * where i =1,2,3,4,5
+
+## Screenshots of some features: 
+
+### Portal to search reviews:
+![Sc1](./Screenshots/Portal.png)
+### Admin area to manage reports and send warnings:
+![Sc2](./Screenshots/Admin1.png)
+### Admin area to handle temporary and permanent bans: 
+![Sc3](./Screenshots/Admin2.png)
