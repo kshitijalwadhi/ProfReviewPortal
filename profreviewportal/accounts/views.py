@@ -6,6 +6,10 @@ from review.models import Course, Review, Prof, Warning
 from django.contrib.auth.decorators import login_required
 from .forms import AddBlockField, AddLikeField
 from .models import Block, LikesCount
+from django.forms import ValidationError
+from datetime import datetime, timedelta
+
+
 # Create your views here.
 
 
@@ -42,8 +46,13 @@ def login_view(request):
             user = form.get_user()
             blocks = Block.objects.all()
             for block in blocks:
-                if block.user == user and block.block == True:
-                    return render(request, 'accounts/blocked.html')
+                if block.user == user and block.blockperm == True:
+                    test = True
+                    return render(request, 'accounts/blocked.html', {'test': test})
+                elif block.user == user and block.tempban == True:
+                    test = False
+                    till = block.end
+                    return render(request, 'accounts/blocked.html', {'test': test, 'till': till})
             login(request, user)
             if 'next' in request.POST:
                 return redirect(request.POST.get('next'))

@@ -13,9 +13,9 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 class Block(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, default=None)
     BOOL_CHOICES = ((False, 'No'), (True, 'Yes'))
-    block = models.BooleanField(choices=BOOL_CHOICES, default=False)
-    datetillblock = models.DateField(
-        auto_now_add=True)
+    blockperm = models.BooleanField(choices=BOOL_CHOICES, default=False)
+    tempban = models.BooleanField(choices=BOOL_CHOICES, default=False)
+    end = models.DateTimeField(null=True)
 
     def __str__(self):
         return self.user.username

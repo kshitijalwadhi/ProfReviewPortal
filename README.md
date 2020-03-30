@@ -54,12 +54,13 @@ The main model of this app contains the class Review which has the following par
 * Report button for reviews.
 * Like/Dislike feature for author of a review to allow a reader to judge the authors credibility.
 * Also shows likes received by every review
+* The Admin can select the duration of ban (15 days or permanently).
 
 ## Upcoming Features:
 * ~~Report button for reviews~~ (Added)
 * ~~Like/Dislike feature for author of a review.~~ (Added)
 * Verification of email ID during registration.
-* Option to ban a user for a particular number of days instead of permanently.
+* ~~Option to ban a user for a particular number of days(15) instead of permanently.~~ (Added)
 
 ## Instructions for firing the server up:
 First install the dependencies, by cloning the repo and going into the directory containing, then open a terminal there and execute:

@@ -2,7 +2,15 @@
 
 {% block content %}
 
-<h1> BLOCKED !</h1>
+
+{% if test %}
+
+<h1> BLOCKED PERMANENTLY !</h1>
+{% else %}
+
+<h1> BLOCKED TEMPORARILY !</h1>
+<h2> Block ends on : {{ till }}</h2>
+{% endif %}
 <hr>
 <p> Sorry, your account has been blocked by the admin for posting offensive comments. </p>
 <p> Please contact the admin.</p>
