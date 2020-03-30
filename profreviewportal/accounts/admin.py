@@ -3,6 +3,7 @@ from .models import Block, LikesCount
 # Register your models here.
 # admin.site.register(Block)
 # admin.site.register(LikesCount)
+admin.site.site_header = 'Administration'
 
 
 @admin.register(Block)

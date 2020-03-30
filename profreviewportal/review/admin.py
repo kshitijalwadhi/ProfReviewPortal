@@ -7,10 +7,25 @@ from django.contrib import admin
 from .models import Prof, Course, Review, Warning
 # Register your models here.
 
+admin.site.site_header = 'Administration'
+
 admin.site.register(Course)
 # admin.site.register(Review)
 admin.site.register(Prof)
 # admin.site.register(Warning)
+
+
+def remove_reported(modeladmin, request, queryset):
+    for obj in queryset:
+        if obj.report == True:
+            obj.delete()
+            tempuser = obj.author
+            w = Warning(
+                user=tempuser, message='Your review was deleted because it was reported by users.')
+            w.save()
+
+
+remove_reported.short_description = "Remove reported reviews and send warning"
 
 
 @admin.register(Review)
@@ -18,6 +33,7 @@ class ReviewAdmin(admin.ModelAdmin):
     list_display = ('code', 'prof', 'date', 'report')
     ordering = ('-date',)
     search_fields = ('code', 'prof', 'report')
+    actions = [remove_reported]
 
 
 @admin.register(Warning)
