@@ -36,7 +36,7 @@ class Review(models.Model):
     BOOL_CHOICES = ((False, 'No'), (True, 'Yes'))
     anonymous = models.BooleanField(choices=BOOL_CHOICES, default=False)
     author = models.ForeignKey(User, on_delete=models.CASCADE, default=None)
-    date = models.DateTimeField(auto_now=True)
+    date = models.DateTimeField(auto_now_add=True)
     report = models.BooleanField(
         choices=BOOL_CHOICES, default=False, null=True)
 

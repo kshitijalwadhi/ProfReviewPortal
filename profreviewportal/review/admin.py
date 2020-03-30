@@ -10,7 +10,7 @@ from .models import Prof, Course, Review, Warning
 admin.site.register(Course)
 # admin.site.register(Review)
 admin.site.register(Prof)
-admin.site.register(Warning)
+# admin.site.register(Warning)
 
 
 @admin.register(Review)
@@ -18,6 +18,13 @@ class ReviewAdmin(admin.ModelAdmin):
     list_display = ('code', 'prof', 'date', 'report')
     ordering = ('-date',)
     search_fields = ('code', 'prof', 'report')
+
+
+@admin.register(Warning)
+class WarningAdmin(admin.ModelAdmin):
+    list_display = ('user', 'message', 'date')
+    ordering = ('-date',)
+    search_fields = ('user', 'message')
 
 
 # Reference for the below : https://medium.com/datadriveninvestor/monitoring-user-actions-with-logentry-in-django-admin-8c9fbaa3f442
