@@ -8,7 +8,7 @@ from .forms import AddBlockField, AddLikeField
 from .models import Block, LikesCount
 from django.forms import ValidationError
 from datetime import datetime, timedelta
-
+from django.utils import timezone
 
 # Create your views here.
 
@@ -49,10 +49,13 @@ def login_view(request):
                 if block.user == user and block.blockperm == True:
                     test = True
                     return render(request, 'accounts/blocked.html', {'test': test})
-                elif block.user == user and block.tempban == True:
+                elif block.user == user and block.tempban == True and timezone.now() < block.end:
                     test = False
                     till = block.end
                     return render(request, 'accounts/blocked.html', {'test': test, 'till': till})
+                elif block.user == user and block.tempban == True and timezone.now() >= block.end:
+                    block.tempban = False
+                    block.end = None
             login(request, user)
             if 'next' in request.POST:
                 return redirect(request.POST.get('next'))
