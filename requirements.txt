@@ -1,5 +1,5 @@
 django_filter==2.2.0
 django_autocomplete_light==3.5.1
 Django==3.0.4
-dal==0.2
 django_filters==0.2.1
+django-registration
