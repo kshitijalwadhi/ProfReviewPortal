@@ -7,6 +7,10 @@ This may help juniors to get a better idea of courses at the time of registratio
 
 The project was built using Django Framework.
 
+The app is hosted on: [http://kshitijalwadhi.pythonanywhere.com](http://kshitijalwadhi.pythonanywhere.com)
+
+and the admin area can be accessed from [http://kshitijalwadhi.pythonanywhere.com/admin](http://kshitijalwadhi.pythonanywhere.com/admin)
+
 ## Note to judging team of Dev Club: 
 * The answers to the questions are there in the repo itself in the pdf format. 
   
