@@ -80,10 +80,6 @@ Open the terminal and from the root directory of this repo(the one containing ma
 $ python manage.py runserver
 ```
 ## Default ID and passwords:
-
-* For Admin:
-  * username: admin
-  * password: admin
 * For other users:
   * username: useri
   * password: passi
