@@ -44,6 +44,9 @@ INSTALLED_APPS = [
     'accounts',
     'review',
     'django_filters',
+    'crispy_forms',
+    'allauth',
+    'allauth.account',
     # 'simple_autocomplete'
 ]
 
@@ -136,3 +139,5 @@ ACCOUNT_ACTIVATION_DAYS = 7
 REGISTRATION_AUTO_LOGIN = True
 
 SITE_ID = 1
+
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
